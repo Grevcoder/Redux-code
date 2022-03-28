@@ -1,23 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import {useSelector} from 'react-redux';
+//import {increment} from './action/CounterAction';
+//import {decrement} from './action/CounterAction';
+import {colorRed} from './action/colorAction';
+import {colorGreen} from './action/colorAction';
+import {colorBlue} from './action/colorAction';
+import {colorOrange} from './action/colorAction';
+
+
+import { useDispatch } from 'react-redux';
 
 function App() {
+  console.log('inside UI');
+  const color=useSelector(state=>state);
+  const dispatch=useDispatch();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Your color:{color}</h1>
+      <input type="radio" name="red" value="red" onClick={()=>dispatch(colorRed())}></input>
+      <label>Red</label>
+      <input type='radio' name="blue" value='blue' onClick={()=>dispatch(colorBlue())}></input>
+      <label>Blue</label>
+      <input type='radio' name="green" value='green' onClick={()=>dispatch(colorGreen())}></input>
+      <label>Green</label>
+      <input type='radio' name="orange" value='Orange' onClick={()=>dispatch(colorOrange())}></input>
+      <label>Orange</label>
     </div>
   );
 }
